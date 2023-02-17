@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>welcome to the home Page </h1>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="table-primary">
+                        <td>@item.Id</td>
+                        <td>@item.NormalizedUserName</td>
+                        <td>@item.Email</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container mt-3">
+        <h2>User status</h2>
+        <div class="mt-4 p-5 bg-success text-white rounded">
+            <h1>User is not logged in</h1>
+            <p>In order to see all the user registred in the system , you need to be logged in</p>
+        </div>
+    </div>
+}
